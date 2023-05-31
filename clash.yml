@@ -14,7 +14,17 @@ proxies:
   tls: false
   type: vmess
   uuid: 4c42a493-3943-4f2c-fbf0-159f5983f595
-- name: 🇨🇳_CN_中国->🇭🇰_HK_香港_0@2
+- alterId: 0
+  cipher: auto
+  name: 🇨🇳_CN_中国->🇭🇰_HK_香港_0@2
+  network: tcp
+  port: 22014
+  server: 119.28.14.129
+  skip-cert-verify: false
+  tls: false
+  type: vmess
+  uuid: a9aa8a60-0b8f-48c8-a5b3-52b94753691c
+- name: 🇨🇳_CN_中国->🇭🇰_HK_香港_0@3
   network: tcp
   password: love
   port: 5200
