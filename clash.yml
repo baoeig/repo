@@ -58,6 +58,7 @@ proxy-groups:
   type: select
 - name: 📲 电报信息
   proxies:
+  - ♻️ 自动选择
   - 🚀 节点选择
   - 🎯 全球直连
   - 🇺🇸_US_美国_1_0@1
