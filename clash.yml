@@ -23,13 +23,13 @@ proxies:
   type: vmess
   uuid: a9aa8a60-0b8f-48c8-a5b3-52b94753691c
 - name: 🇨🇳_CN_中国->🇭🇰_HK_香港_0@3
-  network: tcp
+  network: ws
   password: love
-  port: 5200
-  server: 119.28.14.129
+  port: 3344
+  server: trojan.bwplus.top
   skip-cert-verify: false
   type: trojan
-  udp: false
+  udp: true
 proxy-groups:
 - name: 🚀 节点选择
   proxies:
@@ -37,12 +37,14 @@ proxy-groups:
   - DIRECT
   - 🇺🇸_US_美国_1_0@1
   - 🇨🇳_CN_中国->🇭🇰_HK_香港_0@2
+  - 🇨🇳_CN_中国->🇭🇰_HK_香港_0@3
   type: select
 - interval: 300
   name: ♻️ 自动选择
   proxies:
   - 🇺🇸_US_美国_1_0@1
   - 🇨🇳_CN_中国->🇭🇰_HK_香港_0@2
+  - 🇨🇳_CN_中国->🇭🇰_HK_香港_0@3
   tolerance: 50
   type: url-test
   url: http://www.gstatic.com/generate_204
