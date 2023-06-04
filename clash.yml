@@ -4,16 +4,14 @@ log-level: info
 mixed-port: 7890
 mode: Rule
 proxies:
-- alterId: 0
-  cipher: auto
-  name: 🇺🇸_US_美国_1_0@1
-  network: tcp
-  port: 35801
-  server: 23.234.221.24
+- name: 🇺🇸_US_美国_1_0@1
+  network: ws
+  password: love
+  port: 3344
+  server: lsj.bwplus.top
   skip-cert-verify: false
-  tls: false
-  type: vmess
-  uuid: 4c42a493-3943-4f2c-fbf0-159f5983f595
+  type: trojan
+  udp: true
 - alterId: 0
   cipher: auto
   name: 🇨🇳_CN_中国->🇭🇰_HK_香港_0@2
