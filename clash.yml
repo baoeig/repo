@@ -25,7 +25,7 @@ proxies:
 - name: 🇨🇳_CN_中国->🇭🇰_HK_香港_0@3
   network: ws
   password: love
-  port: 4455
+  port: 3344
   server: trojan.bwplus.top
   skip-cert-verify: false
   type: trojan
