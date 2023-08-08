@@ -9,7 +9,7 @@ proxies:
   password: love
   port: 3344
   server: lsj.bwplus.top
-  skip-cert-verify: false
+  skip-cert-verify: true
   type: trojan
   udp: true
 - alterId: 0
