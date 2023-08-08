@@ -27,7 +27,7 @@ proxies:
   port: 4455
   server: xg.bwplus.top
   type: trojan
-  skip-cert-verify: false
+  skip-cert-verify: true
   udp: true
 proxy-groups:
 - name: 🚀 节点选择
