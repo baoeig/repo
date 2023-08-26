@@ -1,0 +1,196 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: :9090
+proxies:
+  - name: 🇺🇸_US_美国_1_0@1
+    network: ws
+    password: love
+    port: 3344
+    server: lsj.bwplus.top
+    skip-cert-verify: true
+    type: trojan
+    udp: true
+  - alterId: 0
+    cipher: auto
+    name: 🇨🇳_CN_中国->🇭🇰_HK_香港_0@2
+    network: tcp
+    port: 22014
+    server: 119.28.14.129
+    skip-cert-verify: false
+    tls: false
+    type: vmess
+    uuid: a9aa8a60-0b8f-48c8-a5b3-52b94753691c
+  - name: 🇨🇳_CN_中国->🇭🇰_HK_香港_0@3
+    password: love
+    port: 4455
+    server: xg.bwplus.top
+    type: trojan
+    skip-cert-verify: true
+    udp: true
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - DIRECT
+      - "🇺🇸_US_美国_1_0@1"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@2"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@3"
+  - name: ♻️ 自动选择
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    proxies:
+      - "🇺🇸_US_美国_1_0@1"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@2"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@3"
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - ♻️ 自动选择
+      - 🎯 全球直连
+      - "🇺🇸_US_美国_1_0@1"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@2"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@3"
+  - name: 📲 电报信息
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - "🇺🇸_US_美国_1_0@1"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@2"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@3"
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - 🎯 全球直连
+      - 🚀 节点选择
+      - "🇺🇸_US_美国_1_0@1"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@2"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@3"
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - "🇺🇸_US_美国_1_0@1"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@2"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@3"
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - ♻️ 自动选择
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🍃 应用净化
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🎯 全球直连
+      - ♻️ 自动选择
+      - "🇺🇸_US_美国_1_0@1"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@2"
+      - "🇨🇳_CN_中国->🇭🇰_HK_香港_0@3"
+rules:
+  - RULE-SET,LocalAreaNetwork,🎯 全球直连
+  - RULE-SET,BanAD,🛑 全球拦截
+  - RULE-SET,BanProgramAD,🍃 应用净化
+  - RULE-SET,GoogleCN,🎯 全球直连
+  - RULE-SET,SteamCN,🎯 全球直连
+  - RULE-SET,Microsoft,Ⓜ️ 微软服务
+  - RULE-SET,Apple,🍎 苹果服务
+  - RULE-SET,ProxyMedia,🌍 国外媒体
+  - RULE-SET,Telegram,📲 电报信息
+  - RULE-SET,ProxyLite,🚀 节点选择
+  - RULE-SET,ChinaDomain,🎯 全球直连
+  - RULE-SET,ChinaCompanyIp,🎯 全球直连
+  - GEOIP,CN,🎯 全球直连
+  - MATCH,🐟 漏网之鱼
+rule-providers:
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9Mb2NhbEFyZWFOZXR3b3JrLmxpc3Q"
+    path: ./providers/rule-provider_LocalAreaNetwork.yaml
+    interval: 86400
+  BanAD:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9CYW5BRC5saXN0"
+    path: ./providers/rule-provider_BanAD.yaml
+    interval: 86400
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9CYW5Qcm9ncmFtQUQubGlzdA"
+    path: ./providers/rule-provider_BanProgramAD.yaml
+    interval: 86400
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9Hb29nbGVDTi5saXN0"
+    path: ./providers/rule-provider_GoogleCN.yaml
+    interval: 86400
+  SteamCN:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9SdWxlc2V0L1N0ZWFtQ04ubGlzdA"
+    path: ./providers/rule-provider_SteamCN.yaml
+    interval: 86400
+  Microsoft:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9NaWNyb3NvZnQubGlzdA"
+    path: ./providers/rule-provider_Microsoft.yaml
+    interval: 86400
+  Apple:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9BcHBsZS5saXN0"
+    path: ./providers/rule-provider_Apple.yaml
+    interval: 86400
+  ProxyMedia:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9Qcm94eU1lZGlhLmxpc3Q"
+    path: ./providers/rule-provider_ProxyMedia.yaml
+    interval: 86400
+  Telegram:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9UZWxlZ3JhbS5saXN0"
+    path: ./providers/rule-provider_Telegram.yaml
+    interval: 86400
+  ProxyLite:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9Qcm94eUxpdGUubGlzdA"
+    path: ./providers/rule-provider_ProxyLite.yaml
+    interval: 86400
+  ChinaDomain:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9DaGluYURvbWFpbi5saXN0"
+    path: ./providers/rule-provider_ChinaDomain.yaml
+    interval: 86400
+  ChinaCompanyIp:
+    type: http
+    behavior: classical
+    url: "https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9DaGluYUNvbXBhbnlJcC5saXN0"
+    path: ./providers/rule-provider_ChinaCompanyIp.yaml
+    interval: 86400
