@@ -7,7 +7,7 @@ proxies:
 - name: 🇺🇸_US_美国_1_0@1
   network: ws
   password: love
-  port: 3344
+  port: 1122
   server: lsj.bwplus.top
   skip-cert-verify: true
   type: trojan
