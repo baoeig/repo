@@ -7,12 +7,11 @@ proxies:
 - name: 🇺🇸_US_美国_1_0@1
   network: ws
   uuid: f004a026-3a02-4294-837e-f49d660aea82
-  port: 1122
+  port: 3456
   server: lsj.bwplus.top
   skip-cert-verify: false
   tls: true
   type: vless
-  udp: true
 - alterId: 0
   cipher: auto
   name: 🇨🇳_CN_中国->🇭🇰_HK_香港_0@2
